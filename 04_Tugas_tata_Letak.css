@@ -1,0 +1,123 @@
+/* ==========================================================================
+   04-tugas-style.css - Stylesheet Portal Jurnal Ilmiah
+   ========================================================================== */
+
+/* --- Reset & Gaya Dasar --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* --- 1. Header Navigasi Flexbox Murni --- */
+.navbar-custom {
+    display: flex;
+    flex-direction: column; /* Default Mobile First: merapat vertikal */
+    align-items: center;
+    background-color: #0b2265;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+}
+
+.brand-logo a {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column; /* Merapat vertikal di ponsel */
+    align-items: center;
+    width: 100%;
+    gap: 0.75rem;
+}
+
+.nav-link-custom {
+    color: #d0d7de;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.active {
+    color: #ffffff;
+}
+
+/* Responsif Navigasi untuk Layar Sedang/Lebar */
+@media (min-width: 576px) {
+    .navbar-custom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .nav-menu {
+        flex-direction: row; /* Horizontal pada layar yang lebih lebar */
+        width: auto;
+        gap: 1.25rem;
+    }
+}
+
+
+/* --- 2. Layout Utama CSS Grid Kustom --- */
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile View: 1 kolom bertumpuk */
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.sidebar-left, 
+.content-area, 
+.sidebar-right {
+    background-color: #ffffff;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Layar Tablet (768px - 991px): 2 kolom (Kolom Kanan Bersembunyi/Turun ke Bawah) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .main-layout {
+        grid-template-columns: 200px 1fr;
+    }
+    .sidebar-right {
+        grid-column: 1 / -1; /* Berpindah turun ke bawah membentang penuh */
+    }
+}
+
+/* Layar Lebar (Desktop Desktop / >= 992px): 3 Kolom */
+@media (min-width: 992px) {
+    .main-layout {
+        grid-template-columns: 200px 1fr 220px; /* Sidebar 200px, Artikel Fleksibel, Kanan 220px */
+    }
+}
+
+
+/* --- 3. Grid Mikro untuk Kartu Artikel Bootstrap --- */
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Utilitas Pembantu */
+.w-fit-content {
+    width: fit-content;
+}
+
+.fs-7 {
+    font-size: 0.875rem;
+}
